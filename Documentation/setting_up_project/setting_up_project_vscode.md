@@ -109,7 +109,7 @@ And finally, we need to reference our shared project. Simply replace the followi
 
 ```xml
 <ItemGroup>
-  <MonoGameContentReference Include="Content\Content.mgcb" Visible="false" />
+  <MonoGameContentReference Include="Content\Content.mgcb" />
 </ItemGroup>
 ```
 

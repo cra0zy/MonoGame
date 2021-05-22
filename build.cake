@@ -61,8 +61,8 @@ Task("Prep")
     // We tag the version with the build branch to make it
     // easier to spot special builds in NuGet feeds.
     var branch = EnvironmentVariable("GIT_BRANCH") ?? string.Empty;    
-    if (!branch.Contains("master"))
-	version += "-develop";
+    if (!branch.Contains("master") && !version.Contains("-"))
+	    version += "-develop";
 	
     Console.WriteLine("Build Branch: {0}", branch);
     Console.WriteLine("Build Version: {0}", version);
@@ -159,7 +159,7 @@ Task("BuildUWP")
     .WithCriteria(() => GetMSBuildWith("Microsoft.VisualStudio.Component.Windows10SDK.17763"))
     .Does(() =>
 {
-    PackMSBuild("MonoGame.Framework/MonoGame.Framework.WindowsUniversal.csproj");
+    // PackMSBuild("MonoGame.Framework/MonoGame.Framework.WindowsUniversal.csproj");
 });
 
 Task("BuildContentPipeline")

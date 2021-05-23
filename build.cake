@@ -156,10 +156,10 @@ Task("BuildiOS")
 
 Task("BuildUWP")
     .IsDependentOn("Prep")
-    .WithCriteria(() => GetMSBuildWith("Microsoft.VisualStudio.Component.Windows10SDK.17763"))
+    .WithCriteria(() => GetMSBuildWith("Microsoft.VisualStudio.Component.Windows10SDK.17763") && string.IsNullOrEmpty(EnvironmentVariable("GITHUB_ACTIONS")))
     .Does(() =>
 {
-    // PackMSBuild("MonoGame.Framework/MonoGame.Framework.WindowsUniversal.csproj");
+    PackMSBuild("MonoGame.Framework/MonoGame.Framework.WindowsUniversal.csproj");
 });
 
 Task("BuildContentPipeline")

@@ -28,6 +28,8 @@ jobs:
         run: dotnet tool restore
       - name: Run build.cake
         run: dotnet cake build.cake "--build-version=${{steps.semantic-version.outputs.version}}"
+        env:
+          GITHUB_ACTIONS: true
       - uses: actions/upload-artifact@main
         with:
           name: Nuget Packages ${{ matrix.os }}
